@@ -109,20 +109,20 @@ class Aw_Stepity_Public {
 
 		$data = $this->get_post_data();
 
+		///error_log(print_r($data, true));
+
 		if( ! isset( $data['email'] ) ){
-
 			$this->json_output(array('message' => 'No email found in the request.', 'status' => 'fail'));
-
 		}
 
 		$email = $data['email'];
+		$provider = ( isset( $data['provider'] ) ) ? $data['provider'] : $stepify_options['mailing_provider'];
 
-		switch ($stepify_options['mailing_provider']) {
+		switch ($provider) {
 			case 'aweber':
 				if( $this->aweber_ready ){
-					//error_log("aWeber");
 					//error_log($this->aweber_ready);
-					//error_log($stepify_options['aweber_list']);
+					//error_log(print_r( $stepify_options, true) );
 
 					if( isset( $stepify_options['aweber_list'] ) && !empty( $stepify_options['aweber_list'] ) ){
 
@@ -139,6 +139,25 @@ class Aw_Stepity_Public {
 					}
 				}
 				break;
+			case 'getresponse':
+				$gr_api_key = isset($stepify_options['getresponse_api_key']) ? $stepify_options['getresponse_api_key'] : null;
+				$campaign_id = isset($stepify_options['getresponse_list']) ? $stepify_options['getresponse_list'] : null;
+
+				if ($gr_api_key && $campaign_id) {
+					$get_response = new Get_Response_Proxy( $gr_api_key );
+					$contact = array(
+						'campaign' => $campaign_id,
+						'email' => $email
+					);
+					$added = $get_response->add_contact($contact);
+					if( $added ){
+						$this->json_output(array('message' => 'GetResponse Email Added', 'status' => 'success', 'provider' => 'GetResponse'));
+					}else{
+						$this->json_output(array('message' => 'GetResponse: Error adding email', 'status' => 'fail'));
+					}
+				}else{
+					$this->json_output(array('message' => 'GetResponse: Configuration error', 'status' => 'fail'));
+				}
 		}
 
 	}

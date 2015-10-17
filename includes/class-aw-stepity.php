@@ -114,6 +114,12 @@ class Aw_Stepity {
 		require_once plugin_dir_path( dirname( __FILE__ ) )  . 'includes/class-aw-stepify-aweber.php';
 
 		/**
+		 * The class responsible for Get Response API
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/vendors/getresponse/class-get-response.php';
+
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-aw-stepity-admin.php';

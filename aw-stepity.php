@@ -13,10 +13,10 @@
  * @package           Aw_Stepity
  *
  * @wordpress-plugin
- * Plugin Name:       Stepify - AWeber Integration
+ * Plugin Name:       Stepify - Mailing Integrations
  * Plugin URI:        https://enriquechavez.co
- * Description:       Stepify integration with AWeber.
- * Version:           1.0.0
+ * Description:       Stepify External Mailing Integrations as aWeber or getResponse.
+ * Version:           1.0.1
  * Author:            Enrique Chavez
  * Author URI:        https://enriquechavez.co
  * License:           GPL-2.0+
