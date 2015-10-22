@@ -45,11 +45,11 @@ if( !class_exists('Get_Response_Proxy') ){
 
 			} catch (Exception $e) {
 
-				add_action('admin_notices', function() use ($e) {
+				/*add_action('admin_notices', function() use ($e) {
 
 			        echo '<div class="error"><p>GET_RESPONSE: ', esc_html($e->getMessage()), '</p></div>';
 
-			    });
+			    });*/
 
 
 				return false;
