@@ -16,7 +16,7 @@
  * Plugin Name:       Stepify - Mailing Integrations
  * Plugin URI:        https://enriquechavez.co
  * Description:       Stepify External Mailing Integrations as aWeber or getResponse.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Enrique Chavez
  * Author URI:        https://enriquechavez.co
  * License:           GPL-2.0+

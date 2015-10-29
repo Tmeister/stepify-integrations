@@ -156,12 +156,12 @@ class Aw_Stepity_Public
                                         $user_id = key($user);
                                         //error_log('USERID: '.$user_id);
                                         //error_log('Campaing: '.$key);
-                                        $this->get_response->set_contact_cycle(
+                                        /*$this->get_response->set_contact_cycle(
                                             array(
                                                 'contact' => $user_id,
                                                 'cycle_day' => 0
                                             )
-                                        );
+                                        );*/
                                         $moved = $this->get_response->move_contact(
                                             array(
                                                 'contact' => $user_id,
