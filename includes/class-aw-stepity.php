@@ -180,6 +180,7 @@ class Aw_Stepity {
 		$plugin_public = new Aw_Stepity_Public( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_public, 'add_end_points' );
 		$this->loader->add_action( 'template_redirect', $plugin_public, 'verify_end_point');
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_global_shortcode' );
 	}
 
 	/**

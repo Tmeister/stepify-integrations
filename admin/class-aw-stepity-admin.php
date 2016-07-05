@@ -92,6 +92,7 @@ class Aw_Stepity_Admin
         $providers['general'] = __('General', $this->plugin_name);
         $providers['aweber'] = __('aWeber', $this->plugin_name);
         $providers['getresponse'] = __('GetResponse', $this->plugin_name);
+        $providers['globalpopup'] = __('Global Popup', $this->plugin_name);
 
         return apply_filters('stepify_providers', $providers);
     }
@@ -242,6 +243,18 @@ class Aw_Stepity_Admin
                     ),
                 )
             ),
+
+            /* Global Popup Settings */
+            'globalpopup' => apply_filters('stepify_globalpopup_settings',
+                array(
+                    'global_popup_shortcode' => array(
+                        'id' => 'global_popup_source',
+                        'name' => __('Global Popup Shortcode', 'stepify'),
+                        'desc' => __('Please add the Quiz shortcode to show across the site, ex:<br>[stepify type="id" id="564be7aea502f90f00eeb321"]','stepify'),
+                        'type' => 'text'
+                    )
+                )
+            )
         );
 
         return apply_filters('stepify_providers_settings', $stepify_prov_settings);

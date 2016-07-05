@@ -98,13 +98,21 @@ class Aw_Stepity_Public
         }
     }
 
+    public function add_global_shortcode(){
+        global $stepify_options;
+        $shortcode = ( $stepify_options['global_popup_source'] ) ? $stepify_options['global_popup_source'] : false;
+        if(  !empty( trim($shortcode) ) ){
+            echo do_shortcode( $shortcode );
+        }
+    }
+
     public function add_user_email()
     {
         global $stepify_options;
 
         $data = $this->get_post_data();
 
-        /////error_log(print_r($data, true));
+        ///error_log(print_r($data, true));
 
         if (!isset($data['email'])) {
             $this->json_output(array('message' => 'No email found in the request.', 'status' => 'fail'));
@@ -116,8 +124,8 @@ class Aw_Stepity_Public
         switch ($provider) {
             case 'aweber':
                 if ($this->aweber_ready) {
-                    ////error_log($this->aweber_ready);
-                    ////error_log(print_r( $stepify_options, true) );
+                    //error_log($this->aweber_ready);
+                    //error_log(print_r( $stepify_options, true) );
 
                     if (isset($stepify_options['aweber_list']) && !empty($stepify_options['aweber_list'])) {
                         $added = $this->aweber->add_subscriber($email, $stepify_options['aweber_list']);
@@ -142,8 +150,8 @@ class Aw_Stepity_Public
                         $campaigns = $this->get_response->get_campaigns();
                         if ($campaigns) {
                             foreach ($campaigns as $key => $campaign) {
-                                ////error_log($key);
-                                //error_log(print_r($campaign, true));
+                                //error_log($key);
+                                error_log(print_r($campaign, true));
                                 if ($campaign['name'] == $follow_up) {
                                     //GET THE USER
                                     $user = $this->get_response->get_contacts(
@@ -151,11 +159,11 @@ class Aw_Stepity_Public
                                             'email' => array('EQUALS' => $email),
                                         )
                                     );
-                                    //error_log(print_r($user, true));
+                                    error_log(print_r($user, true));
                                     if ($user) {
                                         $user_id = key($user);
-                                        //error_log('USERID: '.$user_id);
-                                        //error_log('Campaing: '.$key);
+                                        error_log('USERID: '.$user_id);
+                                        error_log('Campaing: '.$key);
                                         /*$this->get_response->set_contact_cycle(
                                             array(
                                                 'contact' => $user_id,
@@ -168,8 +176,8 @@ class Aw_Stepity_Public
                                                 'campaign' => $key,
                                             )
                                         );
-                                        //error_log('==========================');
-                                        //error_log(print_r($moved, true));
+                                        error_log('==========================');
+                                        error_log(print_r($moved, true));
 
                                         if (isset($moved['updated'])) {
                                             $this->json_output(array('message' => 'GetResponse: User Updated to '.$follow_up, 'status' => 'success'));
